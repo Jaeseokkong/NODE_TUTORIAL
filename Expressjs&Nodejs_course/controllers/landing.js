@@ -5,7 +5,6 @@ exports.get_landing = function(req, res, next) {
 }
 
 exports.submit_landing = function(req, res, next) {
-    console.log('lead email:', req.body.lead_email);
     return models.Lead.create({
         email: req.body.lead_email
     }).then(lead => {
@@ -17,5 +16,16 @@ exports.show_leads = function(req, res, next) {
     models.Lead.findAll().then(leads => {
         console.log(leads)
         res.render('landing', { title: 'Express', leads: leads });
+    })
+}
+
+exports.show_lead = function(req, res, next) {
+    console.log(req.params.lead_id)
+    return models.Lead.findOne({
+        where : {
+            id: req.params.lead_id
+        }
+    }).then(lead => {
+        res.render('lead', { lead: lead});
     })
 }
