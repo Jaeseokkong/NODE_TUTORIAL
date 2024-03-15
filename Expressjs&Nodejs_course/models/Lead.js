@@ -1,5 +1,3 @@
-// migrations 테이블 정의 자체를 조작 (테이블 생성 컬럼 수정 등 ..)
-
 'use strict'
 module.exports = (sequelize, DataTypes) => {
     const Lead = sequelize.define('Lead', {
