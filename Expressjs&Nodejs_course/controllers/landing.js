@@ -20,12 +20,37 @@ exports.show_leads = function(req, res, next) {
 }
 
 exports.show_lead = function(req, res, next) {
-    console.log(req.params.lead_id)
     return models.Lead.findOne({
         where : {
             id: req.params.lead_id
         }
     }).then(lead => {
         res.render('lead', { lead: lead});
+    })
+}
+
+exports.show_edit_lead = function(req, res, next) {
+    return models.Lead.findOne({
+        where : {
+            id: req.params.lead_id
+        }
+    }).then(lead => {
+        res.render('lead/edit_lead', { lead: lead });
+    })
+}
+
+exports.edit_lead = function(req, res, next) {
+    const lead_id = req.params.lead_id;
+    const lead_email = req.body.lead_email;
+
+    return models.Lead.update({
+        email: lead_email
+    }, {
+        where : {
+            id: lead_id
+        }
+    }).then(result => {
+        console.log(result)
+        res.redirect('/lead/' + lead_id)
     })
 }
