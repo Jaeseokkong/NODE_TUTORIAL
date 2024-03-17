@@ -1,6 +1,16 @@
-extends ../layout
-
-block content
+doctype html 
+html(lang='en')
+  include common/head.pug
+  +head("Starter MVP")
+  body
     form(action="/lead/" + lead.id + "/edit", method="POST")
         input(name="lead_email" type="email", placeholder="Enter your email address", value=lead.email)
         button(type="submit") Save
+  script(src="https://code.jquery.com/jquery-3.2.1.min.js")
+  include common/footer.pug
+  +footer()
+  script(src="/javascripts/lead.js")
+  script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous")
+
+      
+      
